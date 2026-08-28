@@ -1,0 +1,22 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "defaultConfig",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "environment": {
+                "CC": "clang",
+                "CXX": "clang++"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "defaultBuild",
+            "description": "build for config-default",
+            "displayName": "",
+            "configurePreset": "defaultConfig"
+        }
+    ]
+}
