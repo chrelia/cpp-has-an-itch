@@ -1,12 +1,15 @@
 #include <sstream>
-#include "itch/ReplayEngine.hpp"
+#include "itch/ItchParser.hpp"
+#include "replay/ReplayEngine.hpp"
 
 int main() {
     
-    std::stringstream file;
-    file << RESOURCES_PATH << "/itch-psx/20200130.PSX_ITCH_50";
+    std::stringstream path;
+    path << RESOURCES_PATH << "/itch-psx/20200130.PSX_ITCH_50";
 
-    auto replay = itch::ReplayEngine(file.str());
+    replay::ReplayEngine replay(path.str());
+    
+    
     
     return 0;
 }
