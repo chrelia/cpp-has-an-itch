@@ -11,30 +11,49 @@
 
 namespace replay {
 
-    
+
     ReplayEngine::ReplayEngine(const std::string &source)
     : source(source)
     { 
         ASSERT(!source.empty(), "source is empty");
 
-        fildesc = open(source.c_str(), O_RDONLY);    
-        ASSERT((fildesc != -1), "failed to open file");
+        fd = open(source.c_str(), O_RDONLY);    
+        ASSERT((fd != -1), "failed to open file");
 
         struct stat st;
-        fstat(fildesc, &st);
+        fstat(fd, &st);
 
         // get whole file size to map in memory
-        size_t size = st.st_size;
-        ASSERT((size > 0), "size of file < 0")
+        size = st.st_size;
+        ASSERT((size > 0), "size of file <= 0")
 
 
-        buffer = static_cast<char*>(mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fildesc, 0));
+        buffer = static_cast<char*>(mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd, 0));
 
         if (buffer == MAP_FAILED) {
-            close(fildesc);
+            close(fd);
             ERRF("failed to create mapping");
         }
+    }
 
+    ReplayEngine::~ReplayEngine() {
+        if (fd != -1) {
+            close(fd);
+        }
+
+        if (buffer != MAP_FAILED) {
+            munmap(buffer, size);
+        }
+    }
+
+
+    void ReplayEngine::replay() {
+
+        size_t index;
+        while (index < size - 1) {
+            
+
+        }
     }
 
 
