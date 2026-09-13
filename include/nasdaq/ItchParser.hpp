@@ -74,7 +74,7 @@ namespace itch {
         char MessageType;
         uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char Stock[8];
         char TradingState;
         char Reserved;
@@ -102,7 +102,7 @@ namespace itch {
         char MessageType;
         uint16_t LocateCode;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char Stock[8];
         char RegSHOAction;
 
@@ -123,9 +123,9 @@ namespace itch {
     #pragma pack(push, 1)
     struct MarketParticipantPosition {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char MPID[4];
         char Stock[8];
         char PrimaryMarketMaker;
@@ -152,9 +152,9 @@ namespace itch {
     #pragma pack(push, 1)
     struct MWCBDeclineLevelMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         uint64_t Level1;
         uint64_t Level2;
         uint64_t Level3;
@@ -177,9 +177,9 @@ namespace itch {
     #pragma pack(push, 1)
     struct MWCBStatusMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char BreachLevel;
 
         friend std::ostream& operator<<(std::ostream& os, MWCBStatusMessage& m) {
@@ -197,9 +197,9 @@ namespace itch {
     #pragma pack(push, 1)
     struct QuotingPeriodUpdate {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char Stock[8];
         uint32_t IPOQuotationReleaseTime;
         char IPOQuotationReleaseQualifier;
@@ -222,18 +222,18 @@ namespace itch {
     #pragma pack(pop)
 
     #pragma pack(push, 1)
-    struct LULDAuctionCollar {
+    struct LULDAuctionCollarMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char Stock[8];
         uint32_t AuctionCollarReferencePrice;
         uint32_t UpperAuctionCollarPrice;
         uint32_t LowerAuctionCollarPrice;
         uint32_t AuctionCollarExtension;
         
-        friend std::ostream& operator<<(std::ostream& os, LULDAuctionCollar& m) {
+        friend std::ostream& operator<<(std::ostream& os, LULDAuctionCollarMessage& m) {
             os << "MessageType : " << m.MessageType << " "
                << "StockLocate : " << m.StockLocate << " "
                << "TrackingNumber : " << m.TrackingNumber << " "
@@ -254,9 +254,9 @@ namespace itch {
     #pragma pack(push, 1)
     struct OperationHalt {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
+        uint8_t Timestamp[6];
         char Stock[8];
         char MarketCode;
         char OperationalHaltAction;
@@ -280,10 +280,10 @@ namespace itch {
     #pragma pack(push, 1)
     struct AddOrderMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
         char BuySellIndicator;
         char Shares;
         char Stock[8];
@@ -310,10 +310,10 @@ namespace itch {
     #pragma pack(push, 1)
     struct AddOrderWithMPIDMessage{
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
         char BuySellIndicator;
         char Shares;
         char Stock[8];
@@ -341,10 +341,10 @@ namespace itch {
     #pragma pack(push, 1)
     struct OrderExecutedMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
         uint32_t ExecutedShares;
         uint64_t MatchNumber;
 
@@ -367,10 +367,10 @@ namespace itch {
     #pragma pack(push, 1)
     struct OrderExecutedWithPriceMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
         uint32_t ExecutedShares;
         uint64_t MatchNumber;
         char Printable;
@@ -395,10 +395,10 @@ namespace itch {
     #pragma pack(push, 1)
     struct OrderCancelMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
         uint32_t CancelledShares;
         
         friend std::ostream& operator<<(std::ostream& os, OrderCancelMessage& m) {
@@ -417,10 +417,10 @@ namespace itch {
     #pragma pack(push, 1)
     struct OrderDeleteMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
         
         friend std::ostream& operator<<(std::ostream& os, OrderDeleteMessage& m) {
             os << "MessageType : " << m.MessageType << " "
@@ -437,11 +437,11 @@ namespace itch {
     #pragma pack(push, 1)
     struct OrderReplaceMessage {
         char MessageType;
-        uint16_t StockLocate[2];
+        uint16_t StockLocate;
         uint16_t TrackingNumber;
-        uint8_t Timestamp[8];
-        uint64_t OriginalOrderReferenceNumber[8];
-        uint64_t NewOrderReferenceNumber[8];
+        uint8_t Timestamp[6];
+        uint64_t OriginalOrderReferenceNumber;
+        uint64_t NewOrderReferenceNumber;
         uint32_t Shares;
         uint32_t Price;
         
@@ -461,6 +461,177 @@ namespace itch {
     };
     #pragma pack(pop)
 
+    #pragma pack(push, 1)
+    struct TradeMessageNonCross {
+        char MessageType;
+        uint16_t StockLocate;
+        uint16_t TrackingNumber;
+        uint8_t Timestamp[6];
+        uint64_t OrderReferenceNumber;
+        char BuySellIndicator;
+        uint32_t Shares;
+        char Stock[8];
+        uint32_t Price;
+        uint64_t MatchNumber;
+        
+        friend std::ostream& operator<<(std::ostream& os, TradeMessageNonCross& m) {
+            os << "MessageType : " << m.MessageType << " "
+               << "StockLocate : " << m.StockLocate << " "
+               << "TrackingNumber : " << m.TrackingNumber << " "
+               << "Timestamp : " << m.Timestamp << " "
+               << "OrderReferenceNumber : " << m.OrderReferenceNumber << " "
+               << "BuySellIndicator : " << m.BuySellIndicator << " "
+               << "Shares : " << m.Shares << " "
+               << "Stock : " << m.Stock << " "
+               << "Price : " << m.Price << " "
+               << "MatchNumber : " << m.MatchNumber;
+            
+            return os;
+        }
+    };
+    #pragma pack(pop)
+
+    #pragma pack(push, 1)
+    struct TradeMessageCross {
+        char MessageType;
+        uint16_t StockLocate;
+        uint16_t TrackingNumber;
+        uint8_t Timestamp[6];
+        uint64_t Shares;
+        char Stock[8];
+        uint32_t CrossPrice;
+        uint64_t MatchNumber;
+        char CrossType;
+        
+        friend std::ostream& operator<<(std::ostream& os, TradeMessageCross& m) {
+            os << "MessageType : " << m.MessageType << " "
+               << "StockLocate : " << m.StockLocate << " "
+               << "TrackingNumber : " << m.TrackingNumber << " "
+               << "Timestamp : " << m.Timestamp << " "
+               << "Shares : " << m.Shares << " "
+               << "Stock : " << m.Stock << " "
+               << "CrossPrice : " << m.CrossPrice << " "
+               << "MatchNumber : " << m.MatchNumber << " "
+               << "CrossType : " << m.CrossType;
+            
+            return os;
+        }
+    };
+    #pragma pack(pop)
+
+    #pragma pack(push, 1)
+    struct BrokenTradeMessage {
+        char MessageType;
+        uint16_t StockLocate;
+        uint16_t TrackingNumber;
+        uint8_t Timestamp[6];
+        uint64_t MatchNumber;
+        
+        friend std::ostream& operator<<(std::ostream& os, BrokenTradeMessage& m) {
+            os << "MessageType : " << m.MessageType << " "
+               << "StockLocate : " << m.StockLocate << " "
+               << "TrackingNumber : " << m.TrackingNumber << " "
+               << "Timestamp : " << m.Timestamp << " "
+               << "MatchNumber : " << m.MatchNumber;
+            
+            return os;
+        }
+    };
+    #pragma pack(pop)
+
+    #pragma pack(push, 1)
+    struct NOIIMessage {
+        char MessageType;
+        uint16_t StockLocate;
+        uint16_t TrackingNumber;
+        uint8_t Timestamp[6];
+        uint64_t PairedShares;
+        uint64_t ImbalanceShares;
+        char ImbalanceDirection;
+        char Stock[8];
+        uint32_t FarPrice;
+        uint32_t NearPrice;
+        uint32_t CurrentReferencePrice;
+        char CrossType;
+        char PriceValidationIndicator;
+
+        
+        friend std::ostream& operator<<(std::ostream& os, NOIIMessage& m) {
+            os << "MessageType : " << m.MessageType << " "
+               << "StockLocate : " << m.StockLocate << " "
+               << "TrackingNumber : " << m.TrackingNumber << " "
+               << "Timestamp : " << m.Timestamp << " "
+               << "PairedShares : " << m.PairedShares << " "
+               << "ImbalanceShares : " << m.ImbalanceShares << " "
+               << "ImbalanceDirection : " << m.ImbalanceDirection << " "
+               << "Stock : " << m.Stock << " "
+               << "FarPrice : " << m.FarPrice << " "
+               << "NearPrice : " << m.NearPrice << " "
+               << "CurrentReferencePrice : " << m.CurrentReferencePrice << " "
+               << "CrossType : " << m.CrossType << " "
+               << "PriceValidationIndicator : " << m.PriceValidationIndicator;
+            
+            return os;
+        }
+    };
+    #pragma pack(pop)
+
+    #pragma pack(push, 1)
+    struct RPIIMessage {
+        char MessageType;
+        uint16_t StockLocate;
+        uint16_t TrackingNumber;
+        uint8_t Timestamp[6];
+        char Stock[8];
+        char InterestFlag;
+
+        
+        friend std::ostream& operator<<(std::ostream& os, RPIIMessage& m) {
+            os << "MessageType : " << m.MessageType << " "
+               << "StockLocate : " << m.StockLocate << " "
+               << "TrackingNumber : " << m.TrackingNumber << " "
+               << "Stock : " << m.Stock << " "
+               << "InterestFlag : " << m.InterestFlag;
+            
+            return os;
+        }
+    };
+    #pragma pack(pop)
+
+    #pragma pack(push, 1)
+    // Direct Listing with Capital Raise Price Discovery Message
+    struct DLCRPDMessage {
+        char MessageType;
+        uint16_t StockLocate;
+        uint16_t TrackingNumber;
+        uint8_t Timestamp[6];
+        char Stock[8];
+        char OpenEligibilityStatus;
+        uint32_t MinimumAllowablePrice;
+        uint32_t MaximumAllowablePrice;
+        uint64_t NearExecutionPrice;
+        uint32_t LowerPriceCollar;
+        uint32_t UpperPriceCollar;
+
+        
+        friend std::ostream& operator<<(std::ostream& os, DLCRPDMessage& m) {
+            os << "MessageType : " << m.MessageType << " "
+               << "StockLocate : " << m.StockLocate << " "
+               << "TrackingNumber : " << m.TrackingNumber << " "
+               << "Timestamp : " << m.Timestamp << " "
+               << "Stock : " << m.Stock << " "
+               << "OpenEligibilityStatus : " << m.OpenEligibilityStatus << " "
+               << "MinimumAllowablePrice : " << m.MinimumAllowablePrice << " "
+               << "MaximumAllowablePrice : " << m.MaximumAllowablePrice << " "
+               << "NearExecutionPrice : " << m.NearExecutionPrice << " "
+               << "LowerPriceCollar : " << m.LowerPriceCollar << " "
+               << "UpperPriceCollar : " << m.UpperPriceCollar;
+            
+            return os;
+        }
+    };
+    #pragma pack(pop)
+    
 
     class ItchParser {
         
