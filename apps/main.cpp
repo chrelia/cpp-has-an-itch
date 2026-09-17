@@ -1,16 +1,19 @@
 #include <sstream>
 #include <iostream>
 #include "nasdaq/ItchParser.hpp"
-#include "replay/ReplayEngine.hpp"
+#include "file/MappedFile.hpp"
+
+
+using namespace Scratch;
 
 int main() {
     
     std::stringstream path;
     path << RESOURCES_PATH << "/itch-psx/20200130.PSX_ITCH_50";
 
-    std::cout << "path : " << path.str() << std::endl;
+    File::MappedFile file(path.str());
+    
 
-    replay::ReplayEngine replay(path.str());
     
     
     
