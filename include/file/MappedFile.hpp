@@ -2,9 +2,10 @@
 
 #import <string>
 
-namespace Scratch {
+namespace CppHasAnItch {
     
     namespace File {
+
         class MappedFile {
 
             public:
@@ -23,5 +24,6 @@ namespace Scratch {
                 size_t size;
                 char* buffer;
         };
+        
     }
 };

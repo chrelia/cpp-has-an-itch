@@ -3,7 +3,7 @@
 #include "nasdaq/ItchTypes.hpp"
 #include <cstddef>
 
-namespace Scratch {
+namespace CppHasAnItch {
 
     namespace ITCH {
         
@@ -12,9 +12,16 @@ namespace Scratch {
             public:
                 ItchParser() = default;
 
-                inline void parse(char* buffer, size_t size);
-    
-                inline SystenEventMessage parseSystenEventMessage(char* buffer, size_t size);
+                inline void parse(const char* buffer, size_t size);
+
+                template <class Message>
+                inline Message parseMessage(const char* buffer, size_t size, size_t offset = 0);
+            
+            private:
+                template <class Message>
+                inline void handleMessage(Message &m);
+
+                inline SystemEventMessage parseSystemEventMessage(char* buffer, size_t size);
                 inline StockDirectoryMessage parseStockDirectoryMessage(char* buffer, size_t size);
                 inline StockTradingActionMessage parseStockTradingAction(char* buffer, size_t size);
                 inline RegSHORestrictionMessage parseRegSHORestrictionMessage(char* buffer, size_t size);

@@ -9,7 +9,7 @@
 
 
 
-namespace Scratch {
+namespace CppHasAnItch {
 
     namespace File {
 

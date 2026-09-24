@@ -4,7 +4,7 @@
 #include "file/MappedFile.hpp"
 
 
-using namespace Scratch;
+using namespace CppHasAnItch;
 
 int main() {
     

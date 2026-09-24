@@ -12,4 +12,5 @@
 
 #define ERRF(msg) \
     std::cerr << "FATAL : " << msg << std::endl; \
+    exit(EXIT_FAILURE); \
 
