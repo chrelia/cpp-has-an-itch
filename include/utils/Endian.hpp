@@ -7,25 +7,18 @@
 namespace CppHasAnItch {
 
     namespace Utils {
-        
+
         template<std::integral T>
-        inline constexpr void BigToNative(T &val) {
-            if (std::endian::native == std::endian::big)
-                return;
-            val = std::byteswap(val);
+        inline constexpr size_t BigToNative(T &val, const char* buffer) {
+            std::memcpy(val, buffer, sizeof(val));
+
+            if (std::endian::native == std::endian::little)
+                val = std::byteswap(val);
+
+            return sizeof(val);
         }
 
-        inline constexpr void BigToNative(uint8_t *val) {
-            if (std::endian::native == std::endian::big)
-                return;
-            
-            uint64_t tmp;
-            
-            std::memcpy(&tmp, val, 6);
-            BigToNative(tmp);
-            std::memcpy(val, &tmp, 6);
-            
-        }
+        
 
 
     }

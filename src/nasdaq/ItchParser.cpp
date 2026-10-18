@@ -7,32 +7,6 @@ namespace CppHasAnItch {
 
     namespace ITCH {
         
-        void ItchParser::parse(const char* buffer, size_t size) {
-
-            size_t index = 0;
-
-            while (index < size) {
-
-                size_t offset = 0;
-
-                auto type = buffer[offset];
-
-                switch (type) {
-
-                    case static_cast<char>(MessageType::SystemEventMessage): {
-                        SystemEventMessage m;
-                        parseMessage(m, buffer, size, offset);
-                    }
-                }
-
-
-
-
-
-            }
-        }
-
-
 
         
        
