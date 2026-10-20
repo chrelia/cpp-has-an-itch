@@ -7,6 +7,8 @@ namespace CppHasAnItch {
 
     namespace ITCH {
 
+        static constexpr size_t TIMESTAMP_SZ = 48;
+        
         struct SystemEventMessage { 
             static constexpr std::size_t WireSize = 12;
             static constexpr char MessageType = 'S';
@@ -289,7 +291,6 @@ namespace CppHasAnItch {
             uint32_t LowerPriceCollar;
             uint32_t UpperPriceCollar;
         };
-
     }
 
 }

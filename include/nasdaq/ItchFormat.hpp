@@ -1,6 +1,8 @@
 #pragma once
 
 #include "nasdaq/ItchTypes.hpp"
+#include "utils/Endian.hpp"
+#include <cstring>
 
 namespace CppHasAnItch {
 
@@ -370,6 +372,17 @@ namespace CppHasAnItch {
         << " }";
         
         return os;
+    }
+
+    static inline size_t ParseToTimestamp(uint64_t &val, const char* buffer) {
+            auto res = CppHasAnItch::Utils::BigToNative(val, buffer);
+            val = val >> 16;
+            return res;
+        }
+        
+    static inline size_t ParseToString(char* val, const char* buffer, size_t size) {
+        memcpy(val, buffer, size);
+        return size;
     }
   }
 }
