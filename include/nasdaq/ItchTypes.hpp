@@ -7,7 +7,7 @@ namespace CppHasAnItch {
 
     namespace ITCH {
 
-        static constexpr size_t TIMESTAMP_SZ = 48;
+        static constexpr size_t TIMESTAMP_BYTE_SZ = 6;
         
         struct SystemEventMessage { 
             static constexpr std::size_t WireSize = 12;

@@ -3,6 +3,12 @@
 #include "nasdaq/ItchTypes.hpp"
 #include "utils/Endian.hpp"
 #include <cstring>
+#include <string>
+
+// will use sso for stack allocation to convert char[] to string
+// no heap
+#define write_str(val) \
+    std::string(val, sizeof(val)) \
 
 namespace CppHasAnItch {
 
@@ -27,12 +33,12 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", " 
-        << "MarketCategory : " << m.MarketCategory << ", "
+        << "Stock : " << write_str(m.Stock) << ", " 
+        << "MarketCategory : " << write_str(m.MarketCategory) << ", "
         << "FinancialStatusIndicator : " << m.FinancialStatusIndicator << ", "
         << "RoundLotSize : " << m.RoundLotSize << ", " 
         << "IssueClarification : " << m.IssueClassification << ", "
-        << "IssueSubType : " << m.IssueSubType << ", "
+        << "IssueSubType : " << write_str(m.IssueSubType) << ", "
         << "Authenticity : " << m.Authenticity << ", "
         << "ShortSaleThresholdIndicator : " << m.ShortSaleThresholdIndicator << ", "
         << "IPOFlag : " << m.IPOFlag << ", "
@@ -51,10 +57,10 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "TradingState : " << m.TradingState << ", "
         << "Reserved : " << m.Reserved << ", " 
-        << "Reason : " << m.Reason
+        << "Reason : " << write_str(m.Reason)
         << " }";
 
         return os;
@@ -67,7 +73,7 @@ namespace CppHasAnItch {
         << "LocateCode : " << m.LocateCode << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "RegSHOAction : " << m.RegSHOAction
         << " }";
 
@@ -81,8 +87,8 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "MPID : " << m.MPID << ", "
-        << "Stock : " << m.Stock << ", "
+        << "MPID : " << write_str(m.MPID) << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "PrimaryMarketMaker : " << m.PrimaryMarketMaker << ", "
         << "MarketMakerMode : " << m.MarketMakerMode << ", "
         << "MarketParticipantState : " << m.MarketParticipantState
@@ -125,7 +131,7 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "IPOQuotationReleaseTime : " << m.IPOQuotationReleaseTime << ", "
         << "IPOQuotationReleaseQualifier : " << m.IPOQuotationReleaseQualifier << ", "
         << "IPOPrice : " << m.IPOPrice
@@ -142,7 +148,7 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "AuctionCollarReferencePrice : " << m.AuctionCollarReferencePrice << ", "
         << "UpperAuctionCollarPrice : " << m.UpperAuctionCollarPrice << ", "
         << "LowerAuctionCollarPrice : " << m.LowerAuctionCollarPrice << ", "
@@ -160,7 +166,7 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "MarketCode : " << m.MarketCode << ", "
         << "OperationalHaltAction : " << m.OperationalHaltAction
         << " }";
@@ -178,7 +184,7 @@ namespace CppHasAnItch {
         << "OrderReferenceNumber : " << m.OrderReferenceNumber << ", "
         << "BuySellIndicator : " << m.BuySellIndicator << ", "
         << "Shares : " << m.Shares << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "Price : " << m.Price
         << " }";
         
@@ -195,9 +201,9 @@ namespace CppHasAnItch {
         << "OrderReferenceNumber : " << m.OrderReferenceNumber << ", "
         << "BuySellIndicator : " << m.BuySellIndicator << ", "
         << "Shares : " << m.Shares << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "Price : " << m.Price << ", "
-        << "Attribution" << m.Attribution
+        << "Attribution" << write_str(m.Attribution)
         << " }";
         
         return os;
@@ -299,7 +305,7 @@ namespace CppHasAnItch {
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
         << "Shares : " << m.Shares << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "CrossPrice : " << m.CrossPrice << ", "
         << "MatchNumber : " << m.MatchNumber << ", "
         << "CrossType : " << m.CrossType
@@ -312,7 +318,7 @@ namespace CppHasAnItch {
     inline TOutputStream& operator<<(TOutputStream& os, BrokenTradeMessage& m) {
         os << "{ " 
         << "MessageType : " << m.MessageType << ", "
-        << "StockLocate : " << m.StockLocate << ", "
+        << "StockLocate : " << write_str(m.StockLocate) << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
         << "MatchNumber : " << m.MatchNumber
@@ -331,7 +337,7 @@ namespace CppHasAnItch {
         << "PairedShares : " << m.PairedShares << ", "
         << "ImbalanceShares : " << m.ImbalanceShares << ", "
         << "ImbalanceDirection : " << m.ImbalanceDirection << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "FarPrice : " << m.FarPrice << ", "
         << "NearPrice : " << m.NearPrice << ", "
         << "CurrentReferencePrice : " << m.CurrentReferencePrice << ", "
@@ -348,7 +354,7 @@ namespace CppHasAnItch {
         << "MessageType : " << m.MessageType << ", "
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
-        << "Stock : " << m.Stock << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
         << "InterestFlag : " << m.InterestFlag
         << " }";
         
@@ -362,8 +368,8 @@ namespace CppHasAnItch {
         << "StockLocate : " << m.StockLocate << ", "
         << "TrackingNumber : " << m.TrackingNumber << ", "
         << "Timestamp : " << m.Timestamp << ", "
-        << "Stock : " << m.Stock << ", "
-        << "OpenEligibilityStatus : " << m.OpenEligibilityStatus << ", "
+        << "Stock : " << write_str(m.Stock) << ", "
+        << "OpenEligibilityStatus : " << write_str(m.OpenEligibilityStatus) << ", "
         << "MinimumAllowablePrice : " << m.MinimumAllowablePrice << ", "
         << "MaximumAllowablePrice : " << m.MaximumAllowablePrice << ", "
         << "NearExecutionPrice : " << m.NearExecutionPrice << ", "
@@ -374,15 +380,11 @@ namespace CppHasAnItch {
         return os;
     }
 
-    static inline size_t ParseToTimestamp(uint64_t &val, const char* buffer) {
-            auto res = CppHasAnItch::Utils::BigToNative(val, buffer);
-            val = val >> 16;
-            return res;
-        }
-        
-    static inline size_t ParseToString(char* val, const char* buffer, size_t size) {
-        memcpy(val, buffer, size);
-        return size;
+    inline size_t ParseToTimestamp(uint64_t &val, const char* buffer) {
+        auto res = CppHasAnItch::Utils::BigToNative(val, buffer);
+        val = val >> 16;
+        return TIMESTAMP_BYTE_SZ;
     }
+
   }
 }

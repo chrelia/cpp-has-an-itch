@@ -25,11 +25,11 @@ namespace CppHasAnItch {
             fstat(fd, &st);
 
             // get whole file size to map in memory
-            size = st.st_size;
-            ASSERT((size > 0), "size of file <= 0")
+            sz = st.st_size;
+            ASSERT((sz > 0), "size of file <= 0")
 
 
-            buffer = static_cast<char*>(mmap(nullptr, size, PROT_READ, MAP_PRIVATE, fd, 0));
+            buffer = static_cast<char*>(mmap(nullptr, sz, PROT_READ, MAP_PRIVATE, fd, 0));
 
             if (buffer == MAP_FAILED) {
                 close(fd);
@@ -43,11 +43,13 @@ namespace CppHasAnItch {
             }
 
             if (buffer != MAP_FAILED) {
-                munmap(buffer, size);
+                munmap(buffer, sz);
             }
         }
 
-
+        size_t MappedFile::size() const {
+            return sz;
+        }
         const char* MappedFile::operator*() const {
             return buffer;
         }

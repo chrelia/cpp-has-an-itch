@@ -18,8 +18,5 @@ namespace CppHasAnItch {
             return sizeof(val);
         }
 
-        
-
-
     }
 }
